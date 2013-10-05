@@ -46,6 +46,7 @@
             this.PictureIndex = new System.Windows.Forms.TextBox();
             this.NextButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -103,7 +104,7 @@
             // placeHolderToolStripMenuItem
             // 
             this.placeHolderToolStripMenuItem.Name = "placeHolderToolStripMenuItem";
-            this.placeHolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.placeHolderToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.placeHolderToolStripMenuItem.Text = "PlaceHolder";
             // 
             // exitToolStripMenuItem
@@ -259,6 +260,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem placeHolderToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
