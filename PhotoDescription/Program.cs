@@ -14,9 +14,11 @@ namespace PhotoDescription
         [STAThread]
         static void Main()
         {
+            var process = new MainProcess();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainWindow(process));
         }
     }
 }
