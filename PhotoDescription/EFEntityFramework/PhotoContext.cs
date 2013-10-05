@@ -8,7 +8,7 @@ using PhotoDescription.EFEntities;
 
 namespace PhotoDescription.EFEntityFramework
 {
-    class PhotoContext : DbContext
+    public class PhotoContext : DbContext
     {
         public IDbSet<Photo> Photos { get; set; }
         public IDbSet<Trip> Trips { get; set; }

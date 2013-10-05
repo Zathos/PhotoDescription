@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using PhotoDescription.EFEntities;
 using PhotoDescription.EFEntityFramework;
 
@@ -25,7 +26,7 @@ namespace PhotoDescription.Persistent
         /// <summary>
         /// Loads the photos from file system.
         /// </summary>
-        /// <param name="rootDir">The root dir.</param>
+        /// <param name="tripId">The trip unique identifier.</param>
         /// <returns></returns>
         public IList<Photo> LoadPhotosByTripId(int tripId)
         {
@@ -33,6 +34,33 @@ namespace PhotoDescription.Persistent
             {
                 var photos = context.Photos.Where(x => x.TripId == tripId).ToList();
                 return photos;
+            }
+        }
+
+        public void CreateTrip(string path, string title, string description)
+        {
+            using (var context = new PhotoContext())
+            {
+                var trip = new Trip()
+                               {
+                                   Description = description,
+                                   RootPath = path,
+                                   TripName = title,
+                               };
+                context.Trips.Add(trip);
+
+                context.SaveChanges();
+            }
+        }
+
+        public void CreatePhotos(IList<Photo> photos)
+        {
+            using (var context = new PhotoContext())
+            {
+                foreach (var photo in photos)
+                {
+                    context.Photos.Add(photo);   
+                }
             }
         }
     }

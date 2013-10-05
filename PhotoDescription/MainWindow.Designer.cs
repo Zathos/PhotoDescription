@@ -30,6 +30,7 @@
         {
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,6 @@
             this.NextButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.newTripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -79,6 +79,13 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newTripToolStripMenuItem
+            // 
+            this.newTripToolStripMenuItem.Name = "newTripToolStripMenuItem";
+            this.newTripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newTripToolStripMenuItem.Text = "New Trip";
+            this.newTripToolStripMenuItem.Click += new System.EventHandler(this.newTripToolStripMenuItem_Click);
+            // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
@@ -106,7 +113,7 @@
             // placeHolderToolStripMenuItem
             // 
             this.placeHolderToolStripMenuItem.Name = "placeHolderToolStripMenuItem";
-            this.placeHolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.placeHolderToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.placeHolderToolStripMenuItem.Text = "PlaceHolder";
             // 
             // exitToolStripMenuItem
@@ -220,12 +227,6 @@
             this.PreviousButton.TabIndex = 0;
             this.PreviousButton.Text = "Previous";
             this.PreviousButton.UseVisualStyleBackColor = true;
-            // 
-            // newTripToolStripMenuItem
-            // 
-            this.newTripToolStripMenuItem.Name = "newTripToolStripMenuItem";
-            this.newTripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newTripToolStripMenuItem.Text = "New Trip";
             // 
             // MainWindow
             // 

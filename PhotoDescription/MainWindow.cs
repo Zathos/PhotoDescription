@@ -24,6 +24,7 @@ namespace PhotoDescription
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //PictureDisplay.ImageLocation = "C:\\Users\\dboershel\\Pictures\\Dominion\\13-03-22.png";
             //PictureDisplay.ImageLocation = "C:\\Users\\Zathos\\Downloads\\PicTaggingTest\\1\\PICT0001.JPG";
             //return;
 
@@ -40,6 +41,11 @@ namespace PhotoDescription
         {
             //TODO save any chagnes to DB and export an XML backup.
             Environment.Exit(0);
+        }
+
+        private void newTripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _process.CreateTrip();
         }
 
     }

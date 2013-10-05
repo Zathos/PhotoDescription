@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace PhotoDescription.EFEntities
 {
-    class Trip
+    public class Trip
     {
         public int TripId { get; set; }
+        public string TripName { get; set; }
         public string Description { get; set; }
         public string RootPath { get; set; }
     }
