@@ -17,8 +17,8 @@ namespace PhotoDescription
             var temp = selectedPath.Split('\\');
             var rootDir = temp[temp.Length - 1];
 
-            var photoListFromFileSys = _photoRepository.LoadPhotosFromFileSys(rootDir);
-            _photoRepository.CreateNewDatabaseEntries(photoListFromFileSys);
+            //var photoListFromFileSys = _photoRepository.LoadPhotosFromFileSys(rootDir);
+            //_photoRepository.CreateNewDatabaseEntries(photoListFromFileSys);
         }
     }
 }

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFEntities\Photo.cs" />
+    <Compile Include="EFEntities\Trip.cs" />
     <Compile Include="EFEntityFramework\PhotoContext.cs" />
     <Compile Include="MainProcess.cs" />
     <Compile Include="MainWindow.cs">

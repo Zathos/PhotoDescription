@@ -19,24 +19,27 @@ namespace PhotoDescription
             _process = process;
             InitializeComponent();
 
-            //TODO will probably need to set up some binding.
+            //TODO will probably need to set up some binding. get data back to the display.
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO display path picker
+            //PictureDisplay.ImageLocation = "C:\\Users\\Zathos\\Downloads\\PicTaggingTest\\1\\PICT0001.JPG";
+            //return;
+
             var results = folderBrowserDialog1.ShowDialog();
             if (results == DialogResult.OK)
             {
                 _process.LoadNewPath(folderBrowserDialog1.SelectedPath);
 
-                //PictureDisplay.ImageLocation = "C:\\Users\\Zathos\\Downloads\\PicTaggingTest\\1\\PICT0001.JPG";
+                
             }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            //TODO save any chagnes to DB and export an XML backup.
+            Environment.Exit(0);
         }
 
     }

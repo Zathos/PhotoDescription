@@ -5,7 +5,7 @@ namespace PhotoDescription.Persistent
 {
     public interface IPhotoRepository
     {
-        IList<Photo> CreateNewDatabaseEntries(IList<Photo> rootDir);
-        IList<Photo> LoadPhotosFromFileSys(string rootDir);
+        //IList<Photo> CreateNewDatabaseEntries(IList<Photo> rootDir);
+        IList<Photo> LoadPhotosByTripId(int tripId);
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PhotoDescription.Persistent;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +16,10 @@ namespace PhotoDescription
         [STAThread]
         static void Main()
         {
-            var process = new MainProcess();
+            Database.SetInitializer(new DropCreateDatabaseWithSeedData());
+
+            var repository = new PhotoRepository();
+            var process = new MainProcess(repository);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

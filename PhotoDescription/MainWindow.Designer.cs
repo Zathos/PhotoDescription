@@ -42,11 +42,12 @@
             this.PictureDisplay = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.PhotoCount = new System.Windows.Forms.Label();
             this.PictureIndex = new System.Windows.Forms.TextBox();
             this.NextButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.newTripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,6 +70,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newTripToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.loadToolStripMenuItem,
             this.recentToolStripMenuItem,
@@ -83,14 +85,14 @@
             this.saveToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl - S";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.ShowShortcutKeys = false;
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.loadToolStripMenuItem.Text = "Load Directory";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Text = "Load Trip";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // recentToolStripMenuItem
@@ -98,19 +100,19 @@
             this.recentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.placeHolderToolStripMenuItem});
             this.recentToolStripMenuItem.Name = "recentToolStripMenuItem";
-            this.recentToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.recentToolStripMenuItem.Text = "Recent Directories";
+            this.recentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.recentToolStripMenuItem.Text = "Recent Trips";
             // 
             // placeHolderToolStripMenuItem
             // 
             this.placeHolderToolStripMenuItem.Name = "placeHolderToolStripMenuItem";
-            this.placeHolderToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.placeHolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.placeHolderToolStripMenuItem.Text = "PlaceHolder";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -120,8 +122,8 @@
             this.reloadPicturesToolStripMenuItem,
             this.changePictureDirectoryToolStripMenuItem});
             this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
-            this.otherToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.otherToolStripMenuItem.Text = "Other";
+            this.otherToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.otherToolStripMenuItem.Text = "Phase 2";
             // 
             // reloadPicturesToolStripMenuItem
             // 
@@ -150,7 +152,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.PhotoCount);
             this.splitContainer1.Panel2.Controls.Add(this.PictureIndex);
             this.splitContainer1.Panel2.Controls.Add(this.NextButton);
             this.splitContainer1.Panel2.Controls.Add(this.PreviousButton);
@@ -184,21 +186,22 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Description:";
             // 
-            // label1
+            // PhotoCount
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(280, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.PhotoCount.AutoSize = true;
+            this.PhotoCount.Location = new System.Drawing.Point(217, 37);
+            this.PhotoCount.Name = "PhotoCount";
+            this.PhotoCount.Size = new System.Drawing.Size(42, 13);
+            this.PhotoCount.TabIndex = 3;
+            this.PhotoCount.Text = "42 / 34";
             // 
             // PictureIndex
             // 
             this.PictureIndex.Location = new System.Drawing.Point(174, 34);
             this.PictureIndex.Name = "PictureIndex";
-            this.PictureIndex.Size = new System.Drawing.Size(100, 20);
+            this.PictureIndex.Size = new System.Drawing.Size(37, 20);
             this.PictureIndex.TabIndex = 2;
+            this.PictureIndex.Text = "1234";
             // 
             // NextButton
             // 
@@ -217,6 +220,12 @@
             this.PreviousButton.TabIndex = 0;
             this.PreviousButton.Text = "Previous";
             this.PreviousButton.UseVisualStyleBackColor = true;
+            // 
+            // newTripToolStripMenuItem
+            // 
+            this.newTripToolStripMenuItem.Name = "newTripToolStripMenuItem";
+            this.newTripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newTripToolStripMenuItem.Text = "New Trip";
             // 
             // MainWindow
             // 
@@ -255,12 +264,13 @@
         private System.Windows.Forms.PictureBox PictureDisplay;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label PhotoCount;
         private System.Windows.Forms.TextBox PictureIndex;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem placeHolderToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.ToolStripMenuItem newTripToolStripMenuItem;
     }
 }
 
