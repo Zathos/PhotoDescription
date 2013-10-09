@@ -9,5 +9,7 @@ namespace PhotoDescription.Persistent
         IList<Photo> LoadPhotosByTripId(int tripId);
         void CreateTrip(string path, string title, string description);
         void CreatePhotos(IList<Photo> photos);
+        IList<string> LoadAllTrips();
+        Trip LoadTripWithName(string title);
     }
 }

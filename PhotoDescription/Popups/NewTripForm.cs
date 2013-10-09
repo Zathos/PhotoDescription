@@ -11,6 +11,21 @@ namespace PhotoDescription.Popups
             InitializeComponent();
         }
 
+        public string Description
+        {
+            get { return TripDescription.Text; }
+        }
+
+        public string Path
+        {
+            get { return PathText.Text; }
+        }
+
+        public string Title
+        {
+            get { return TripTitleText.Text; }
+        }
+
         private int CountPictures(string fullPath)
         {
             var totalCount = Directory.GetFiles(fullPath, "*.jpg", SearchOption.AllDirectories).Length;
@@ -20,19 +35,19 @@ namespace PhotoDescription.Popups
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            //TODO START HERE chicken and the egg, I think fire an event from here, and main process will watch for it.
-            //_mainProcess.AddTripData(PathText.Text, TripTitleText.Text, TripDescription.Text);
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void PathPickerButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-            if (result == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 PathText.Text = folderBrowserDialog1.SelectedPath;
 

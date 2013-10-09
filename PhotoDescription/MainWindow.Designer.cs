@@ -34,7 +34,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.placeHolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadPicturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,17 +103,9 @@
             // 
             // recentToolStripMenuItem
             // 
-            this.recentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.placeHolderToolStripMenuItem});
             this.recentToolStripMenuItem.Name = "recentToolStripMenuItem";
             this.recentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.recentToolStripMenuItem.Text = "Recent Trips";
-            // 
-            // placeHolderToolStripMenuItem
-            // 
-            this.placeHolderToolStripMenuItem.Name = "placeHolderToolStripMenuItem";
-            this.placeHolderToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.placeHolderToolStripMenuItem.Text = "PlaceHolder";
             // 
             // exitToolStripMenuItem
             // 
@@ -269,7 +260,6 @@
         private System.Windows.Forms.TextBox PictureIndex;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem placeHolderToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem newTripToolStripMenuItem;
     }

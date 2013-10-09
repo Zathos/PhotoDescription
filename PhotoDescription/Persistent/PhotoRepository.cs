@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Windows.Forms;
 using PhotoDescription.EFEntities;
 using PhotoDescription.EFEntityFramework;
 
@@ -39,6 +40,12 @@ namespace PhotoDescription.Persistent
 
         public void CreateTrip(string path, string title, string description)
         {
+            var tripExsitsCheck = LoadTripWithName(title);
+            if (tripExsitsCheck == null || tripExsitsCheck.TripId != 0)
+            {
+                return;
+            }
+
             using (var context = new PhotoContext())
             {
                 var trip = new Trip()
@@ -61,6 +68,34 @@ namespace PhotoDescription.Persistent
                 {
                     context.Photos.Add(photo);   
                 }
+            }
+        }
+
+        public IList<string> LoadAllTrips()
+        {
+            using (var context = new PhotoContext())
+            {
+                var trips = from t in context.Trips
+                            select t.TripName;
+                return trips.ToList();
+            }
+        }
+
+        public Trip LoadTripWithName(string title)
+        {
+            using (var context = new PhotoContext())
+            {
+                var data = from t in context.Trips
+                           where t.TripName == title
+                           select t;
+                var trip = data.ToList();
+                
+                if (trip == null) return new Trip()
+                                             {
+                                                 TripId = 0
+                                             };
+
+                return (trip.Count() == 1) ? trip[0] : null;
             }
         }
     }

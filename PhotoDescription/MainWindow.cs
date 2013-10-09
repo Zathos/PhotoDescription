@@ -1,46 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PhotoDescription
 {
     public partial class MainWindow : Form
     {
-        private readonly MainProcess _process;
-
         public MainWindow(MainProcess process)
         {
             _process = process;
             InitializeComponent();
 
-            //TODO will probably need to set up some binding. get data back to the display.
+            IList<string> trips = _process.AvailableTrips();
+            foreach (var trip in trips)
+            {
+                var menuItem = new ToolStripMenuItem
+                                   {
+                                       Text = trip,
+                                       Name = trip + "ToolStripMenuItem",
+                                   };
+
+                menuItem.Click += TripClicked_Event;
+
+                recentToolStripMenuItem.DropDownItems.Add(menuItem);
+            }
         }
 
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TripClicked_Event(object sender, EventArgs e)
         {
-            //PictureDisplay.ImageLocation = "C:\\Users\\dboershel\\Pictures\\Dominion\\13-03-22.png";
-            //PictureDisplay.ImageLocation = "C:\\Users\\Zathos\\Downloads\\PicTaggingTest\\1\\PICT0001.JPG";
-            //return;
-
-            var results = folderBrowserDialog1.ShowDialog();
-            if (results == DialogResult.OK)
-            {
-                _process.LoadNewPath(folderBrowserDialog1.SelectedPath);
-
-                
-            }
+            var tripMenuItem = (ToolStripMenuItem) sender;
+            _process.LoadTrip(tripMenuItem.Text);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO save any chagnes to DB and export an XML backup.
+            //TODO save any changes to DB and export an XML backup.
+            _process.Backup();
             Environment.Exit(0);
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO testing... can be removed
+            //PictureDisplay.ImageLocation = "C:\\Users\\dboershel\\Pictures\\Dominion\\13-03-22.png";
+            //PictureDisplay.ImageLocation = "C:\\Users\\Zathos\\Downloads\\PicTaggingTest\\1\\PICT0001.JPG";
+            //return;
+
+            //var results = folderBrowserDialog1.ShowDialog();
+            //if (results == DialogResult.OK)
+            //{
+            //    _process.LoadNewPath(folderBrowserDialog1.SelectedPath);
+            //}
         }
 
         private void newTripToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,5 +58,6 @@ namespace PhotoDescription
             _process.CreateTrip();
         }
 
+        private readonly MainProcess _process;
     }
 }
