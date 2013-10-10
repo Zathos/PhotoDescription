@@ -71,12 +71,12 @@ namespace PhotoDescription.Persistent
             }
         }
 
-        public IList<string> LoadAllTrips()
+        public IList<Trip> LoadAllTrips()
         {
             using (var context = new PhotoContext())
             {
                 var trips = from t in context.Trips
-                            select t.TripName;
+                            select t;
                 return trips.ToList();
             }
         }

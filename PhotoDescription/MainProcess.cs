@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using PhotoDescription.EFEntities;
 using PhotoDescription.Persistent;
 using PhotoDescription.Popups;
+using PhotoDescription.View;
 
 namespace PhotoDescription
 {
@@ -28,12 +29,14 @@ namespace PhotoDescription
 
         public IList<string> AvailableTrips()
         {
-            return _photoRepository.LoadAllTrips();
+            //TODO fix side affect programming smell...
+            _availableTrips = _photoRepository.LoadAllTrips();
+            return _availableTrips.Select(x => x.TripName).ToList();
         }
 
         public void Backup()
         {
-            //TODO
+            //TODO should be able to just dump TripData?
         }
 
         public void CreateTrip()
@@ -53,12 +56,25 @@ namespace PhotoDescription
             //_photoRepository.CreateNewDatabaseEntries(photoListFromFileSys);
         }
 
-        public void LoadTrip(string text)
+        public void LoadTrip(string tripName)
         {
             //TODO make sure to save if there is already a trip loaded.
+            SaveLoadedTrip();
+
             //TODO load based on this.
+            var trip = _availableTrips.FirstOrDefault(x => x.TripName == tripName);
+            if (trip != null)
+            {
+                var photos = _photoRepository.LoadPhotosByTripId(trip.TripId);
+                _tripData = new TripData(trip, photos);
+            }
         }
 
+        private void SaveLoadedTrip()
+        {
+
+        }
+        
         private IList<Photo> LoadPicturesFromFilesSystem(string path, int tripId)
         {
             var fileList = Directory.GetFiles(path);
@@ -71,5 +87,17 @@ namespace PhotoDescription
 
         private readonly NewTripForm _newTripFrom;
         private readonly IPhotoRepository _photoRepository;
+        private TripData _tripData;
+        private IList<Trip> _availableTrips;
+
+        internal Photo GetPreviousPhoto()
+        {
+            return _tripData.GetPreviousPhoto;
+        }
+
+        internal Photo GetNextPhoto()
+        {
+            return _tripData.GetNextPhoto;
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace PhotoDescription
             IList<string> trips = _process.AvailableTrips();
             foreach (var trip in trips)
             {
+                //TODO make this a new method
                 var menuItem = new ToolStripMenuItem
                                    {
                                        Text = trip,
@@ -59,5 +60,19 @@ namespace PhotoDescription
         }
 
         private readonly MainProcess _process;
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            var photo = _process.GetPreviousPhoto();
+            PictureDisplay.ImageLocation = photo.FullPath;
+            //TODO display this bad boy...
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            var photo = _process.GetNextPhoto();
+            PictureDisplay.ImageLocation = photo.FullPath;
+            //TODO display this bad boy...
+        }
     }
 }
