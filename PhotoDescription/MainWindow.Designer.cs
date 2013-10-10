@@ -1,4 +1,6 @@
-﻿namespace PhotoDescription
+﻿using System.Windows.Forms;
+
+namespace PhotoDescription
 {
     partial class MainWindow
     {
@@ -39,8 +41,10 @@
             this.reloadPicturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePictureDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.PictureDisplay = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.PhotoDisplay = new System.Windows.Forms.PictureBox();
+            this.PhotoPath = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PhotoDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.PhotoCount = new System.Windows.Forms.Label();
             this.PictureIndex = new System.Windows.Forms.TextBox();
@@ -52,7 +56,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PhotoDisplay)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenuStrip
@@ -144,36 +148,55 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.PictureDisplay);
+            this.splitContainer1.Panel1.Controls.Add(this.PhotoDisplay);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.PhotoPath);
+            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.PhotoDescription);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.PhotoCount);
             this.splitContainer1.Panel2.Controls.Add(this.PictureIndex);
             this.splitContainer1.Panel2.Controls.Add(this.NextButton);
             this.splitContainer1.Panel2.Controls.Add(this.PreviousButton);
             this.splitContainer1.Size = new System.Drawing.Size(576, 347);
-            this.splitContainer1.SplitterDistance = 280;
+            this.splitContainer1.SplitterDistance = 255;
             this.splitContainer1.TabIndex = 1;
             // 
-            // PictureDisplay
+            // PhotoDisplay
             // 
-            this.PictureDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureDisplay.Location = new System.Drawing.Point(0, 0);
-            this.PictureDisplay.Name = "PictureDisplay";
-            this.PictureDisplay.Size = new System.Drawing.Size(576, 280);
-            this.PictureDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureDisplay.TabIndex = 0;
-            this.PictureDisplay.TabStop = false;
+            this.PhotoDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PhotoDisplay.Location = new System.Drawing.Point(0, 0);
+            this.PhotoDisplay.Name = "PhotoDisplay";
+            this.PhotoDisplay.Size = new System.Drawing.Size(576, 255);
+            this.PhotoDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PhotoDisplay.TabIndex = 0;
+            this.PhotoDisplay.TabStop = false;
             // 
-            // textBox1
+            // PhotoPath
             // 
-            this.textBox1.Location = new System.Drawing.Point(83, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(481, 20);
-            this.textBox1.TabIndex = 5;
+            this.PhotoPath.Enabled = false;
+            this.PhotoPath.Location = new System.Drawing.Point(84, 30);
+            this.PhotoPath.Name = "PhotoPath";
+            this.PhotoPath.Size = new System.Drawing.Size(480, 20);
+            this.PhotoPath.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Path:";
+            // 
+            // PhotoDescription
+            // 
+            this.PhotoDescription.Location = new System.Drawing.Point(83, 6);
+            this.PhotoDescription.Name = "PhotoDescription";
+            this.PhotoDescription.Size = new System.Drawing.Size(481, 20);
+            this.PhotoDescription.TabIndex = 5;
             // 
             // label2
             // 
@@ -187,7 +210,7 @@
             // PhotoCount
             // 
             this.PhotoCount.AutoSize = true;
-            this.PhotoCount.Location = new System.Drawing.Point(217, 37);
+            this.PhotoCount.Location = new System.Drawing.Point(217, 59);
             this.PhotoCount.Name = "PhotoCount";
             this.PhotoCount.Size = new System.Drawing.Size(42, 13);
             this.PhotoCount.TabIndex = 3;
@@ -195,15 +218,14 @@
             // 
             // PictureIndex
             // 
-            this.PictureIndex.Location = new System.Drawing.Point(174, 34);
+            this.PictureIndex.Location = new System.Drawing.Point(174, 56);
             this.PictureIndex.Name = "PictureIndex";
             this.PictureIndex.Size = new System.Drawing.Size(37, 20);
             this.PictureIndex.TabIndex = 2;
-            this.PictureIndex.Text = "1234";
             // 
             // NextButton
             // 
-            this.NextButton.Location = new System.Drawing.Point(93, 32);
+            this.NextButton.Location = new System.Drawing.Point(93, 54);
             this.NextButton.Name = "NextButton";
             this.NextButton.Size = new System.Drawing.Size(75, 23);
             this.NextButton.TabIndex = 1;
@@ -213,7 +235,7 @@
             // 
             // PreviousButton
             // 
-            this.PreviousButton.Location = new System.Drawing.Point(12, 32);
+            this.PreviousButton.Location = new System.Drawing.Point(12, 54);
             this.PreviousButton.Name = "PreviousButton";
             this.PreviousButton.Size = new System.Drawing.Size(75, 23);
             this.PreviousButton.TabIndex = 0;
@@ -237,7 +259,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PhotoDisplay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,8 +277,8 @@
         private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadPicturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePictureDirectoryToolStripMenuItem;
-        private System.Windows.Forms.PictureBox PictureDisplay;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox PhotoDisplay;
+        private System.Windows.Forms.TextBox PhotoDescription;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label PhotoCount;
         private System.Windows.Forms.TextBox PictureIndex;
@@ -264,6 +286,8 @@
         private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem newTripToolStripMenuItem;
+        private System.Windows.Forms.TextBox PhotoPath;
+        private System.Windows.Forms.Label label1;
     }
 }
 

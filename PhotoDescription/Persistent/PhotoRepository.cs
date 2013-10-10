@@ -40,12 +40,6 @@ namespace PhotoDescription.Persistent
 
         public void CreateTrip(string path, string title, string description)
         {
-            var tripExsitsCheck = LoadTripWithName(title);
-            if (tripExsitsCheck == null || tripExsitsCheck.TripId != 0)
-            {
-                return;
-            }
-
             using (var context = new PhotoContext())
             {
                 var trip = new Trip()
@@ -68,6 +62,7 @@ namespace PhotoDescription.Persistent
                 {
                     context.Photos.Add(photo);   
                 }
+                context.SaveChanges();
             }
         }
 
@@ -89,13 +84,17 @@ namespace PhotoDescription.Persistent
                            where t.TripName == title
                            select t;
                 var trip = data.ToList();
-                
-                if (trip == null) return new Trip()
-                                             {
-                                                 TripId = 0
-                                             };
 
-                return (trip.Count() == 1) ? trip[0] : null;
+                switch (trip.Count)
+                {
+                    case 0:
+                        return new Trip{TripId = 0};
+                    case 1:
+                        return trip[0];
+                    default:
+                        //should never hit this case, but if I don't the exception will be epic.
+                        return null;
+                }
             }
         }
     }

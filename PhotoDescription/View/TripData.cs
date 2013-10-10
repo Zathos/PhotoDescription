@@ -13,39 +13,53 @@ namespace PhotoDescription.View
         {
             Trip = trip;
             Photos = photos;
-            CurrentPhoto = 0;
+            CurrentPhotoIndex = 0;
         }
 
         public Trip Trip { get; private set; }
         public IList<Photo> Photos { get; private set; }
 
-        private int CurrentPhoto { get; set; }
+        public int CurrentPhotoIndex { get; private set; }
 
-        public Photo GetNextPhoto
+        public Photo NextPhoto
         {
             get
             {
-                CurrentPhoto += 1;
-                if (CurrentPhoto >= Photos.Count())
+                CurrentPhotoIndex += 1;
+                if (CurrentPhotoIndex >= Photos.Count())
                 {
-                    CurrentPhoto -= 1;
+                    CurrentPhotoIndex -= 1;
                 }
-                return Photos[CurrentPhoto];
+                return Photos[CurrentPhotoIndex];
             }
         }
 
-        public Photo GetPreviousPhoto
+        public Photo PreviousPhoto
         {
             get
             {
-                CurrentPhoto -= 1;
-                if (CurrentPhoto < 0)
+                CurrentPhotoIndex -= 1;
+                if (CurrentPhotoIndex < 0)
                 {
-                    CurrentPhoto = 0;
+                    CurrentPhotoIndex = 0;
                 }
-                return Photos[CurrentPhoto];
+                return Photos[CurrentPhotoIndex];
             }
         }
 
+        public string DisplayPhotoCount
+        {
+            get
+            {
+                return string.Format("{0}/{1}", CurrentPhotoIndex + 1, Photos.Count);
+            }
+        }
+
+        public Photo MoveToPhoto(int photoNumber)
+        {
+            var index = photoNumber - 1;
+            CurrentPhotoIndex = index >= 0 && index < Photos.Count ? index : CurrentPhotoIndex;
+            return Photos[CurrentPhotoIndex];
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using PhotoDescription.EFEntities;
+using PhotoDescription.View;
 
 namespace PhotoDescription
 {
@@ -25,17 +27,42 @@ namespace PhotoDescription
 
                 recentToolStripMenuItem.DropDownItems.Add(menuItem);
             }
+
+            PictureIndex.KeyPress += new KeyPressEventHandler(PictureIndex_KeyPress);
+        }
+
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            var photo = _tripData.NextPhoto;
+            UpdateDisplay(photo);
+        }
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            var photo = _tripData.PreviousPhoto;
+            UpdateDisplay(photo);
+        }
+
+        private void UpdateDisplay(Photo photo)
+        {
+            PhotoDisplay.ImageLocation = photo.FullPath;
+            PhotoPath.Text = photo.FullPath;
+            PhotoDescription.Text = photo.Description;
+            PhotoCount.Text = _tripData.DisplayPhotoCount;
+            PictureIndex.Text = (_tripData.CurrentPhotoIndex + 1).ToString();
         }
 
         private void TripClicked_Event(object sender, EventArgs e)
         {
             var tripMenuItem = (ToolStripMenuItem) sender;
-            _process.LoadTrip(tripMenuItem.Text);
+            _tripData = _process.LoadTrip(tripMenuItem.Text);
+            PreviousButton_Click(null, null);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO save any changes to DB and export an XML backup.
+            _process.SaveLoadedTrip(_tripData);
             _process.Backup();
             Environment.Exit(0);
         }
@@ -56,23 +83,25 @@ namespace PhotoDescription
 
         private void newTripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _process.CreateTrip();
+            var tripName = _process.CreateTrip();
+            if (tripName != null)
+            {
+                _tripData = _process.LoadTrip(tripName);
+                PreviousButton_Click(null, null);
+            }
         }
 
         private readonly MainProcess _process;
+        private TripData _tripData;
 
-        private void PreviousButton_Click(object sender, EventArgs e)
+        private void PictureIndex_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var photo = _process.GetPreviousPhoto();
-            PictureDisplay.ImageLocation = photo.FullPath;
-            //TODO display this bad boy...
+            if (_tripData != null && e.KeyChar == '\r')
+            {
+                var photo = _tripData.MoveToPhoto(int.Parse(PictureIndex.Text));
+                UpdateDisplay(photo);
+            }
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
-        {
-            var photo = _process.GetNextPhoto();
-            PictureDisplay.ImageLocation = photo.FullPath;
-            //TODO display this bad boy...
-        }
     }
 }

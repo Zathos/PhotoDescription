@@ -19,32 +19,43 @@ namespace PhotoDescription
 
         public void AddTripData(string path, string title, string description)
         {
+            var tripExsitsCheck = _photoRepository.LoadTripWithName(title);
+            if (tripExsitsCheck.TripId != 0)
+            {
+                //Trip has already been created.
+                return;
+            }
+
             _photoRepository.CreateTrip(path, title, description);
             var newTrip = _photoRepository.LoadTripWithName(title);
 
-            IList<Photo> photos = LoadPicturesFromFilesSystem(path, newTrip.TripId);
+            var photos = LoadPicturesFromFilesSystem(path, newTrip.TripId);
 
             _photoRepository.CreatePhotos(photos);
         }
 
         public IList<string> AvailableTrips()
         {
-            //TODO fix side affect programming smell...
+            //TODO fix side affect programming...
             _availableTrips = _photoRepository.LoadAllTrips();
             return _availableTrips.Select(x => x.TripName).ToList();
         }
 
         public void Backup()
         {
+            //TODO save any changes to DB and export an XML backup.
             //TODO should be able to just dump TripData?
         }
 
-        public void CreateTrip()
+        public string CreateTrip()
         {
             if (_newTripFrom.ShowDialog() == DialogResult.OK)
             {
                 AddTripData(_newTripFrom.Path, _newTripFrom.Title, _newTripFrom.Description);
+                AvailableTrips();
+                return _newTripFrom.Title;
             }
+            return null;
         }
 
         public void LoadNewPath(string selectedPath)
@@ -56,48 +67,35 @@ namespace PhotoDescription
             //_photoRepository.CreateNewDatabaseEntries(photoListFromFileSys);
         }
 
-        public void LoadTrip(string tripName)
+        public TripData LoadTrip(string tripName)
         {
-            //TODO make sure to save if there is already a trip loaded.
-            SaveLoadedTrip();
-
-            //TODO load based on this.
             var trip = _availableTrips.FirstOrDefault(x => x.TripName == tripName);
             if (trip != null)
             {
                 var photos = _photoRepository.LoadPhotosByTripId(trip.TripId);
-                _tripData = new TripData(trip, photos);
+                return new TripData(trip, photos);
             }
+            return null;
         }
 
-        private void SaveLoadedTrip()
-        {
-
-        }
-        
         private IList<Photo> LoadPicturesFromFilesSystem(string path, int tripId)
         {
-            var fileList = Directory.GetFiles(path);
-            return fileList.Select(s => new Photo
+            var fileList = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
+            return fileList.Where(x => x.EndsWith(".jpg") || x.EndsWith(".png"))
+                           .Select(s => new Photo
                                             {
-                                                FullPath = path + "\\" + s,
+                                                FullPath = s,
                                                 TripId = tripId,
                                             }).ToList();
         }
 
+        public void SaveLoadedTrip(TripData tripData)
+        {
+            //TODO save...
+        }
+
         private readonly NewTripForm _newTripFrom;
         private readonly IPhotoRepository _photoRepository;
-        private TripData _tripData;
         private IList<Trip> _availableTrips;
-
-        internal Photo GetPreviousPhoto()
-        {
-            return _tripData.GetPreviousPhoto;
-        }
-
-        internal Photo GetNextPhoto()
-        {
-            return _tripData.GetNextPhoto;
-        }
     }
 }
