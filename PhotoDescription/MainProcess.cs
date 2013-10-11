@@ -97,5 +97,10 @@ namespace PhotoDescription
         private readonly NewTripForm _newTripFrom;
         private readonly IPhotoRepository _photoRepository;
         private IList<Trip> _availableTrips;
+
+        public void SavePhoto(Photo photo)
+        {
+            _photoRepository.UpdatePhoto(photo);
+        }
     }
 }

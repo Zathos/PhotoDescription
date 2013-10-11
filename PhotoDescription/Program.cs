@@ -1,22 +1,19 @@
-﻿using PhotoDescription.EFEntityFramework;
-using PhotoDescription.Persistent;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using PhotoDescription.EFEntityFramework;
+using PhotoDescription.Persistent;
 using PhotoDescription.Popups;
 
 namespace PhotoDescription
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<PhotoContext>());
 

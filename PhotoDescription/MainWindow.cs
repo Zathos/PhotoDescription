@@ -28,27 +28,22 @@ namespace PhotoDescription
                 recentToolStripMenuItem.DropDownItems.Add(menuItem);
             }
 
-            PictureIndex.KeyPress += new KeyPressEventHandler(PictureIndex_KeyPress);
+            PictureIndex.KeyPress += PictureIndex_KeyPress;
         }
 
-
-        private void NextButton_Click(object sender, EventArgs e)
+        private void SaveCurrentlyLoadedTrip()
         {
-            UpdateDescription();
-            var photo = _tripData.NextPhoto;
-            UpdateDisplay(photo);
+            if (_tripData != null)
+            {
+                _process.SaveLoadedTrip(_tripData);
+            }
         }
 
-        private void PreviousButton_Click(object sender, EventArgs e)
-        {
-            UpdateDescription();
-            var photo = _tripData.PreviousPhoto;
-            UpdateDisplay(photo);
-        }
 
         private void UpdateDescription()
         {
-            _tripData.UpdateDescription(PhotoDescription.Text);
+            var photo = _tripData.UpdateDescription(PhotoDescription.Text);
+            _process.SavePhoto(photo);
         }
 
         private void UpdateDisplay(Photo photo)
@@ -58,6 +53,29 @@ namespace PhotoDescription
             PhotoDescription.Text = photo.Description;
             PhotoCount.Text = _tripData.DisplayPhotoCount;
             PictureIndex.Text = (_tripData.CurrentPhotoIndex + 1).ToString();
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            UpdateDescription();
+            var photo = _tripData.NextPhoto;
+            UpdateDisplay(photo);
+        }
+
+        private void PictureIndex_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (_tripData != null && e.KeyChar == '\r')
+            {
+                var photo = _tripData.MoveToPhoto(int.Parse(PictureIndex.Text));
+                UpdateDisplay(photo);
+            }
+        }
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            UpdateDescription();
+            var photo = _tripData.PreviousPhoto;
+            UpdateDisplay(photo);
         }
 
         private void TripClicked_Event(object sender, EventArgs e)
@@ -88,25 +106,7 @@ namespace PhotoDescription
             }
         }
 
-        private void SaveCurrentlyLoadedTrip()
-        {
-            if (_tripData != null)
-            {
-                _process.SaveLoadedTrip(_tripData);
-            }
-        }
-
         private readonly MainProcess _process;
         private TripData _tripData;
-
-        private void PictureIndex_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (_tripData != null && e.KeyChar == '\r')
-            {
-                var photo = _tripData.MoveToPhoto(int.Parse(PictureIndex.Text));
-                UpdateDisplay(photo);
-            }
-        }
-
     }
 }

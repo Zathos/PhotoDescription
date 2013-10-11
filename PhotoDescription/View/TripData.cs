@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PhotoDescription.EFEntities;
 
 namespace PhotoDescription.View
@@ -16,10 +13,12 @@ namespace PhotoDescription.View
             CurrentPhotoIndex = 0;
         }
 
-        public Trip Trip { get; private set; }
-        public IList<Photo> Photos { get; private set; }
-
         public int CurrentPhotoIndex { get; private set; }
+
+        public string DisplayPhotoCount
+        {
+            get { return string.Format("{0}/{1}", CurrentPhotoIndex + 1, Photos.Count); }
+        }
 
         public Photo NextPhoto
         {
@@ -34,6 +33,8 @@ namespace PhotoDescription.View
             }
         }
 
+        public IList<Photo> Photos { get; private set; }
+
         public Photo PreviousPhoto
         {
             get
@@ -47,13 +48,7 @@ namespace PhotoDescription.View
             }
         }
 
-        public string DisplayPhotoCount
-        {
-            get
-            {
-                return string.Format("{0}/{1}", CurrentPhotoIndex + 1, Photos.Count);
-            }
-        }
+        public Trip Trip { get; private set; }
 
         public Photo MoveToPhoto(int photoNumber)
         {
@@ -62,9 +57,10 @@ namespace PhotoDescription.View
             return Photos[CurrentPhotoIndex];
         }
 
-        internal void UpdateDescription(string newDescription)
+        public Photo UpdateDescription(string newDescription)
         {
             Photos[CurrentPhotoIndex].Description = newDescription;
+            return Photos[CurrentPhotoIndex];
         }
     }
 }

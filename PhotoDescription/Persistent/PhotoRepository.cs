@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using PhotoDescription.EFEntities;
 using PhotoDescription.EFEntityFramework;
@@ -9,6 +11,13 @@ namespace PhotoDescription.Persistent
 {
     public class PhotoRepository : IPhotoRepository
     {
+        public PhotoRepository()
+        {
+            using (var context = new PhotoContext())
+            {
+                context.Database.CreateIfNotExists();
+            }
+        }
         ///// <summary>
         ///// Updates the database.
         ///// </summary>
@@ -106,6 +115,16 @@ namespace PhotoDescription.Persistent
 
                 //BAD: this just creates a new record.
                 context.Photos.Add(photos[0]);
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdatePhoto(Photo photo)
+        {
+            using (var context = new PhotoContext())
+            {
+                Photo oldPhoto = context.Photos.FirstOrDefault(x => x.PhotoId == photo.PhotoId);
+                oldPhoto.Description = photo.Description;
                 context.SaveChanges();
             }
         }
