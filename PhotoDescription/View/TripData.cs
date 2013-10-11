@@ -61,5 +61,10 @@ namespace PhotoDescription.View
             CurrentPhotoIndex = index >= 0 && index < Photos.Count ? index : CurrentPhotoIndex;
             return Photos[CurrentPhotoIndex];
         }
+
+        internal void UpdateDescription(string newDescription)
+        {
+            Photos[CurrentPhotoIndex].Description = newDescription;
+        }
     }
 }

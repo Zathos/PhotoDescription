@@ -11,5 +11,7 @@ namespace PhotoDescription.Persistent
         void CreatePhotos(IList<Photo> photos);
         IList<Trip> LoadAllTrips();
         Trip LoadTripWithName(string title);
+
+        void UpdatePhotos(IList<Photo> photos);
     }
 }

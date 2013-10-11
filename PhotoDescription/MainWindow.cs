@@ -34,14 +34,21 @@ namespace PhotoDescription
 
         private void NextButton_Click(object sender, EventArgs e)
         {
+            UpdateDescription();
             var photo = _tripData.NextPhoto;
             UpdateDisplay(photo);
         }
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {
+            UpdateDescription();
             var photo = _tripData.PreviousPhoto;
             UpdateDisplay(photo);
+        }
+
+        private void UpdateDescription()
+        {
+            _tripData.UpdateDescription(PhotoDescription.Text);
         }
 
         private void UpdateDisplay(Photo photo)
@@ -55,6 +62,8 @@ namespace PhotoDescription
 
         private void TripClicked_Event(object sender, EventArgs e)
         {
+            SaveCurrentlyLoadedTrip();
+
             var tripMenuItem = (ToolStripMenuItem) sender;
             _tripData = _process.LoadTrip(tripMenuItem.Text);
             PreviousButton_Click(null, null);
@@ -62,32 +71,28 @@ namespace PhotoDescription
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _process.SaveLoadedTrip(_tripData);
+            SaveCurrentlyLoadedTrip();
             _process.Backup();
             Environment.Exit(0);
         }
 
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO testing... can be removed
-            //PictureDisplay.ImageLocation = "C:\\Users\\dboershel\\Pictures\\Dominion\\13-03-22.png";
-            //PictureDisplay.ImageLocation = "C:\\Users\\Zathos\\Downloads\\PicTaggingTest\\1\\PICT0001.JPG";
-            //return;
-
-            //var results = folderBrowserDialog1.ShowDialog();
-            //if (results == DialogResult.OK)
-            //{
-            //    _process.LoadNewPath(folderBrowserDialog1.SelectedPath);
-            //}
-        }
-
         private void newTripToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveCurrentlyLoadedTrip();
+
             var tripName = _process.CreateTrip();
             if (tripName != null)
             {
                 _tripData = _process.LoadTrip(tripName);
                 PreviousButton_Click(null, null);
+            }
+        }
+
+        private void SaveCurrentlyLoadedTrip()
+        {
+            if (_tripData != null)
+            {
+                _process.SaveLoadedTrip(_tripData);
             }
         }
 

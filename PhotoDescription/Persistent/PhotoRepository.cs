@@ -97,5 +97,17 @@ namespace PhotoDescription.Persistent
                 }
             }
         }
+
+        public void UpdatePhotos(IList<Photo> photos)
+        {
+            using (var context = new PhotoContext())
+            {
+                //TODO how to update a record?
+
+                //BAD: this just creates a new record.
+                context.Photos.Add(photos[0]);
+                context.SaveChanges();
+            }
+        }
     }
 }

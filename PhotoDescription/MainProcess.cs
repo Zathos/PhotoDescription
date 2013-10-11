@@ -91,7 +91,7 @@ namespace PhotoDescription
 
         public void SaveLoadedTrip(TripData tripData)
         {
-            //TODO save...
+            _photoRepository.UpdatePhotos(tripData.Photos);
         }
 
         private readonly NewTripForm _newTripFrom;

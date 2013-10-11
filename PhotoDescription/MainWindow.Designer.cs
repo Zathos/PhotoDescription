@@ -34,12 +34,10 @@ namespace PhotoDescription
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadPicturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePictureDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.PhotoDisplay = new System.Windows.Forms.PictureBox();
             this.PhotoPath = new System.Windows.Forms.TextBox();
@@ -75,7 +73,6 @@ namespace PhotoDescription
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newTripToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.loadToolStripMenuItem,
             this.recentToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -85,7 +82,7 @@ namespace PhotoDescription
             // newTripToolStripMenuItem
             // 
             this.newTripToolStripMenuItem.Name = "newTripToolStripMenuItem";
-            this.newTripToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.newTripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newTripToolStripMenuItem.Text = "New Trip";
             this.newTripToolStripMenuItem.Click += new System.EventHandler(this.newTripToolStripMenuItem_Click);
             // 
@@ -95,34 +92,26 @@ namespace PhotoDescription
             this.saveToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl - S";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.ShowShortcutKeys = false;
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            // 
-            // loadToolStripMenuItem
-            // 
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.loadToolStripMenuItem.Text = "Load Trip";
-            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // recentToolStripMenuItem
             // 
             this.recentToolStripMenuItem.Name = "recentToolStripMenuItem";
-            this.recentToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.recentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.recentToolStripMenuItem.Text = "Recent Trips";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // otherToolStripMenuItem
             // 
             this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reloadPicturesToolStripMenuItem,
-            this.changePictureDirectoryToolStripMenuItem});
+            this.reloadPicturesToolStripMenuItem});
             this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
             this.otherToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.otherToolStripMenuItem.Text = "Phase 2";
@@ -132,12 +121,6 @@ namespace PhotoDescription
             this.reloadPicturesToolStripMenuItem.Name = "reloadPicturesToolStripMenuItem";
             this.reloadPicturesToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.reloadPicturesToolStripMenuItem.Text = "Reload Pictures";
-            // 
-            // changePictureDirectoryToolStripMenuItem
-            // 
-            this.changePictureDirectoryToolStripMenuItem.Name = "changePictureDirectoryToolStripMenuItem";
-            this.changePictureDirectoryToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.changePictureDirectoryToolStripMenuItem.Text = "Change Picture Directory";
             // 
             // splitContainer1
             // 
@@ -276,13 +259,11 @@ namespace PhotoDescription
         private System.Windows.Forms.Button PreviousButton;
         private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reloadPicturesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changePictureDirectoryToolStripMenuItem;
         private System.Windows.Forms.PictureBox PhotoDisplay;
         private System.Windows.Forms.TextBox PhotoDescription;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label PhotoCount;
         private System.Windows.Forms.TextBox PictureIndex;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem newTripToolStripMenuItem;
