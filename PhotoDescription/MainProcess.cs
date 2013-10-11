@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using PhotoDescription.EFEntities;
 using PhotoDescription.Persistent;
 using PhotoDescription.Popups;
@@ -41,10 +43,20 @@ namespace PhotoDescription
             return _availableTrips.Select(x => x.TripName).ToList();
         }
 
-        public void Backup()
+        public void Backup(TripData tripData)
         {
-            //TODO save any changes to DB and export an XML backup.
-            //TODO should be able to just dump TripData?
+            const string BackupDir = ".\\Backup\\";
+            if (!Directory.Exists(BackupDir))
+            {
+                Directory.CreateDirectory(BackupDir);
+            }
+
+            var mySerializer = new XmlSerializer(typeof(TripData));
+            var myWriter = new StreamWriter(BackupDir + tripData.Trip.TripName + "." + DateTime.Now.ToFileTime() + ".xml");
+
+            mySerializer.Serialize(myWriter, tripData);
+            myWriter.Close();
+
         }
 
         public string CreateTrip()
@@ -91,7 +103,7 @@ namespace PhotoDescription
 
         public void SaveLoadedTrip(TripData tripData)
         {
-            _photoRepository.UpdatePhotos(tripData.Photos);
+            SavePhoto(tripData.CurrentPhoto);
         }
 
         private readonly NewTripForm _newTripFrom;

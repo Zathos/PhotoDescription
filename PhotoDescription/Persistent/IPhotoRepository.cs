@@ -12,7 +12,7 @@ namespace PhotoDescription.Persistent
         IList<Trip> LoadAllTrips();
         Trip LoadTripWithName(string title);
 
-        void UpdatePhotos(IList<Photo> photos);
+        //void UpdatePhotos(IList<Photo> photos);
         void UpdatePhoto(Photo photo);
     }
 }

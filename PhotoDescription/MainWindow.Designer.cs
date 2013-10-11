@@ -33,11 +33,8 @@ namespace PhotoDescription
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadPicturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.PhotoDisplay = new System.Windows.Forms.PictureBox();
             this.PhotoPath = new System.Windows.Forms.TextBox();
@@ -49,6 +46,7 @@ namespace PhotoDescription
             this.NextButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.MainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -60,8 +58,7 @@ namespace PhotoDescription
             // MainMenuStrip
             // 
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.otherToolStripMenuItem});
+            this.fileToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
             this.MainMenuStrip.Size = new System.Drawing.Size(576, 24);
@@ -72,7 +69,6 @@ namespace PhotoDescription
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newTripToolStripMenuItem,
-            this.saveToolStripMenuItem,
             this.recentToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -85,15 +81,6 @@ namespace PhotoDescription
             this.newTripToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newTripToolStripMenuItem.Text = "New Trip";
             this.newTripToolStripMenuItem.Click += new System.EventHandler(this.newTripToolStripMenuItem_Click);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl - S";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.ShowShortcutKeys = false;
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem.Text = "Save";
             // 
             // recentToolStripMenuItem
             // 
@@ -108,20 +95,6 @@ namespace PhotoDescription
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // otherToolStripMenuItem
-            // 
-            this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reloadPicturesToolStripMenuItem});
-            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
-            this.otherToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.otherToolStripMenuItem.Text = "Phase 2";
-            // 
-            // reloadPicturesToolStripMenuItem
-            // 
-            this.reloadPicturesToolStripMenuItem.Name = "reloadPicturesToolStripMenuItem";
-            this.reloadPicturesToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.reloadPicturesToolStripMenuItem.Text = "Reload Pictures";
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -135,6 +108,7 @@ namespace PhotoDescription
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.ExitButton);
             this.splitContainer1.Panel2.Controls.Add(this.PhotoPath);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.PhotoDescription);
@@ -195,9 +169,8 @@ namespace PhotoDescription
             this.PhotoCount.AutoSize = true;
             this.PhotoCount.Location = new System.Drawing.Point(217, 59);
             this.PhotoCount.Name = "PhotoCount";
-            this.PhotoCount.Size = new System.Drawing.Size(42, 13);
+            this.PhotoCount.Size = new System.Drawing.Size(0, 13);
             this.PhotoCount.TabIndex = 3;
-            this.PhotoCount.Text = "42 / 34";
             // 
             // PictureIndex
             // 
@@ -226,11 +199,22 @@ namespace PhotoDescription
             this.PreviousButton.UseVisualStyleBackColor = true;
             this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(489, 54);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(75, 23);
+            this.ExitButton.TabIndex = 8;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 371);
+            this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.MainMenuStrip);
             this.Name = "MainWindow";
@@ -252,13 +236,10 @@ namespace PhotoDescription
 
         private System.Windows.Forms.MenuStrip MainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.Button PreviousButton;
-        private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reloadPicturesToolStripMenuItem;
         private System.Windows.Forms.PictureBox PhotoDisplay;
         private System.Windows.Forms.TextBox PhotoDescription;
         private System.Windows.Forms.Label label2;
@@ -269,6 +250,7 @@ namespace PhotoDescription
         private System.Windows.Forms.ToolStripMenuItem newTripToolStripMenuItem;
         private System.Windows.Forms.TextBox PhotoPath;
         private System.Windows.Forms.Label label1;
+        private Button ExitButton;
     }
 }
 

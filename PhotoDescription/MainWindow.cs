@@ -84,13 +84,18 @@ namespace PhotoDescription
 
             var tripMenuItem = (ToolStripMenuItem) sender;
             _tripData = _process.LoadTrip(tripMenuItem.Text);
-            PreviousButton_Click(null, null);
+            UpdateDisplay(_tripData.CurrentPhoto);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveCurrentlyLoadedTrip();
-            _process.Backup();
+            if (_tripData != null)
+            {
+                UpdateDescription();
+                SaveCurrentlyLoadedTrip();
+                _process.Backup(_tripData);
+            }
+
             Environment.Exit(0);
         }
 
@@ -102,11 +107,16 @@ namespace PhotoDescription
             if (tripName != null)
             {
                 _tripData = _process.LoadTrip(tripName);
-                PreviousButton_Click(null, null);
+                UpdateDisplay(_tripData.CurrentPhoto);
             }
         }
 
         private readonly MainProcess _process;
         private TripData _tripData;
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            exitToolStripMenuItem_Click(null, null);
+        }
     }
 }
