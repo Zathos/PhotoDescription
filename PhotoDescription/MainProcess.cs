@@ -93,7 +93,7 @@ namespace PhotoDescription
         private IList<Photo> LoadPicturesFromFilesSystem(string path, int tripId)
         {
             var fileList = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
-            return fileList.Where(x => x.EndsWith(".jpg") || x.EndsWith(".png"))
+            return fileList.Where(x => x.EndsWith(".jpg") || x.EndsWith(".png") || x.EndsWith(".JPG") || x.EndsWith(".PNG"))
                            .Select(s => new Photo
                                             {
                                                 FullPath = s,
