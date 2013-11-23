@@ -16,7 +16,7 @@ namespace PhotoDescriptionTests
         [Test]
         public void PhotoContext_Constructor()
         {
-            var context = new PhotoRepository();
+            var context = new EFPhotoRepository();
             Assert.That(context, Is.Not.Null);
         }
 

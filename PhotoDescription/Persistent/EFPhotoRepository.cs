@@ -5,9 +5,9 @@ using PhotoDescription.EFEntityFramework;
 
 namespace PhotoDescription.Persistent
 {
-    public class PhotoRepository : IPhotoRepository
+    public class EFPhotoRepository : IPhotoRepository
     {
-        public PhotoRepository()
+        public EFPhotoRepository()
         {
             using (var context = new PhotoContext())
             {

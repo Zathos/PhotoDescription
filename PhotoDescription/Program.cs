@@ -20,7 +20,9 @@ namespace PhotoDescription
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var repository = new PhotoRepository();
+            //var repository = new EFPhotoRepository();
+            var repository = new XMLPhotoRepository();
+
             var newTripFrom = new NewTripForm();
             var process = new MainProcess(repository, newTripFrom);
 

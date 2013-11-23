@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D04271863CD98B7160DA4BB19C495CD5C993C6DD</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CF51B0CE2651ED6B3605BD89E6A15FF10BA61BA2</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>PhotoDescription_TemporaryKey.pfx</ManifestKeyFile>
@@ -88,7 +88,8 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistent\IPhotoRepository.cs" />
-    <Compile Include="Persistent\PhotoRepository.cs" />
+    <Compile Include="Persistent\EFPhotoRepository.cs" />
+    <Compile Include="Persistent\XMLPhotoRepository.cs" />
     <Compile Include="Popups\NewTripForm.cs">
       <SubType>Form</SubType>
     </Compile>
